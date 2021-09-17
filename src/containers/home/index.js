@@ -16,9 +16,20 @@ const Index = () => {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
 
+  const calculate = () => {
+    const d = [];
+    d.push([intl.formatMessage({id: 'users'}), intl.formatMessage({id: 'completed'})]);
+    Object.keys(global.users).forEach(x => {
+      const val = global.users[x].completed;
+      d.push([x, val]);
+    });
+    setData(d);
+  };
+
   useEffect(() => {
     setUpdate(true);
-  }, [global.lang]);
+    calculate();
+  }, [global.lang, global.active]);
 
   useEffect(() => {
     if (update) {
@@ -27,13 +38,7 @@ const Index = () => {
   }, [update]);
 
   useEffect(() => {
-    const d = [];
-    d.push([intl.formatMessage({id: 'users'}), intl.formatMessage({id: 'completed'})]);
-    Object.keys(global.users).forEach(x => {
-      const val = global.users[x].completed;
-      d.push([x, val]);
-    });
-    setData(d);
+    calculate();
   }, []);
 
   return (
@@ -50,7 +55,8 @@ const Index = () => {
           options={{
             chart: {
               title: intl.formatMessage({id: 'completed.by.users'}),
-              subtitle: ''
+              subtitle: '',
+              bar: {groupWidth: '50%'}
             },
           }}
           rootProps={{'data-testid': '2'}}
