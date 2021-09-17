@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -23,6 +23,8 @@ function FizzBuzz() {
   const [minimum, setMinimum] = useState(1);
   const [maximum, setMaximum] = useState(100);
   const [error, setError] = useState(null);
+
+  const solut = useRef(null);
 
   const [solution, setSolution] = useState(null);
 
@@ -53,10 +55,11 @@ function FizzBuzz() {
       const glb = {...global};
       glb.users[glb.active].completed = glb.users[glb.active].completed + 1;
       setGlobal(glb);
-
       setSolution(sol);
+      solut.current = sol.join(',');
+
     } else {
-      setError(intl.formatMessage({id: 'must.be.logged'}));
+      setError({msg: intl.formatMessage({id: 'must.be.logged'})});
     }
   };
 
@@ -182,11 +185,21 @@ function FizzBuzz() {
           <Button variant="contained" color="primary" onClick={() => {
             setSolution(null);
           }}>{intl.formatMessage({id: 'play.again'})}</Button>
+          <Button style={{marginLeft: '10px'}} variant="contained" color="secondary" onClick={() => {
+            navigator.clipboard
+              .writeText(solut.current)
+              .then(() => {
+                setError({ msg: intl.formatMessage({ id: 'copied' }), isError: false });
+              })
+              .catch(() => {
+                setError({ msg: intl.formatMessage({ id: 'error.copy' }) });
+              });
+          }}>{intl.formatMessage({id: 'copy'})}</Button>
         </Paper>
       )}
       {error && <Error handleClose={() => {
         setError(null);
-      }} message={error}/>}
+      }} message={error.msg} isError={error.isError}/>}
     </>
   );
 }

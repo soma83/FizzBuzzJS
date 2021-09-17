@@ -2,10 +2,10 @@ import React from 'react';
 
 export const globals = {
   active: null,
+  lang: 'en',
   users: {
     user: {
       passw: '12345',
-      lang: 'en',
       completed: 0
     }
   }

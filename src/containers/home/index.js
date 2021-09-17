@@ -14,6 +14,17 @@ const Index = () => {
   const intl = useIntl();
   const {global} = useContext(GlobalContext);
   const [data, setData] = useState([]);
+  const [update, setUpdate] = useState(false);
+
+  useEffect(() => {
+    setUpdate(true);
+  }, [global.lang]);
+
+  useEffect(() => {
+    if (update) {
+      setUpdate(false);
+    }
+  }, [update]);
 
   useEffect(() => {
     const d = [];
@@ -29,7 +40,8 @@ const Index = () => {
     <Paper className={classes.paper}>
       <Typography variant="h5">{intl.formatMessage({id: 'welcome'})}</Typography>
       <div className={classes.topMargin}>
-        <Chart
+        {!update ? (
+          <Chart
           width={'100%'}
           height={'450px'}
           chartType="Bar"
@@ -38,12 +50,12 @@ const Index = () => {
           options={{
             chart: {
               title: intl.formatMessage({id: 'completed.by.users'}),
-              subtitle: '',
-              legend: {position: 'none'},
+              subtitle: ''
             },
           }}
           rootProps={{'data-testid': '2'}}
         />
+        ) : <Typography>{intl.formatMessage({id: 'loading'})}</Typography>}
       </div>
     </Paper>
   );

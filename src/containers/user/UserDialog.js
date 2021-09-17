@@ -81,7 +81,7 @@ const UserDialog = ({handleClose}) => {
     if (Object.keys(glb.users).includes(username)) {
       setError(intl.formatMessage({id: 'username.taken'}));
     } else {
-      glb.users[username] = {passw: password, lang: 'en', completed: 0};
+      glb.users[username] = {passw: password, completed: 0};
       glb.active = username;
       setGlobal(glb);
       handleClose();

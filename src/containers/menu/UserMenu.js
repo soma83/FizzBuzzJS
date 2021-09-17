@@ -49,8 +49,9 @@ function UserMenu() {
   return (
     <>
       <div style={{display: 'inline-flex'}}>
-        <div style={{textAlign: 'right', paddingTop: '14px'}}>
-          <Typography style={{fontWeight: 'bold'}}>{name}</Typography>
+        <div style={{textAlign: 'right', paddingTop: '5px'}}>
+          <Typography>{intl.formatMessage({id: 'user'})}</Typography>
+          <Typography style={{fontWeight: 'bold', marginTop: '-5px'}}>{name}</Typography>
         </div>
         <Button onClick={handleMenu('user-setting')}>
           {getAvatar(name)}
@@ -78,18 +79,15 @@ function UserMenu() {
             </ListItemIcon>
             {intl.formatMessage({id: !active ? 'login.register' : 'logout'})}
           </MenuItem>
-          {active && (
-            <MenuItem onClick={() => {
-              const glb = {...global};
-              glb.users[active].lang = glb.users[active].lang === 'en' ? 'es' : 'en';
-              setGlobal(glb)
-            }}>
-              <ListItemIcon>
-                <TranslateIcon/>
-              </ListItemIcon>
-              {intl.formatMessage({id: 'switch.language'})}
-            </MenuItem>
-          )}
+          <MenuItem onClick={() => {
+            setGlobal({...global, lang: global.lang === 'en' ? 'es' : 'en'});
+            handleClose();
+          }}>
+            <ListItemIcon>
+              <TranslateIcon/>
+            </ListItemIcon>
+            {intl.formatMessage({id: 'switch.language'})}
+          </MenuItem>
         </Menu>
       )}
 

@@ -29,8 +29,8 @@ function App() {
   const [global, setGlobal] = useState(globals);
   const [locale, setLocale] = useState('en');
 
-  if (global && global.active) {
-    const {lang} = global.users[global.active];
+  if (global) {
+    const {lang} = global;
     if (lang !== locale) {
       setLocale(lang);
     }

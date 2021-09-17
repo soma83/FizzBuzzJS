@@ -8,19 +8,24 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const Error = ({message, handleClose}) => {
+const Error = ({message, handleClose, isError}) => {
   return (
     <Portal>
       <Snackbar open={true} autoHideDuration={3000} onClose={handleClose}>
-        <Alert severity="error">{message}</Alert>
+        <Alert severity={isError ? "error" : "success"}>{message}</Alert>
       </Snackbar>
     </Portal>
   );
 };
 
+Error.defaultProps = {
+  isError: true
+};
+
 Error.propTypes = {
   message: PropTypes.string.isRequired,
-  handleClose: PropTypes.func.isRequired
+  handleClose: PropTypes.func.isRequired,
+  isError: PropTypes.bool
 };
 
 export default Error;

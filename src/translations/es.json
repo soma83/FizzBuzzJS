@@ -12,6 +12,7 @@
   "logout": "Salir",
   "switch.language": "Cambiar a Inglés",
   "users": "Usuarios",
+  "user": "Usuario",
   "completed": "Completado",
   "username": "Nombre de usuario",
   "username.here": "Nombre de usuario aquí",
@@ -32,8 +33,11 @@
   "loading": "Cargando gráfico",
   "completed.by.users": "FizzBuzz completados por usuarios",
   "helpcomment": "Los datos son en memoria, es decir, cada vez que abra la aplicación o refresque el navegador los datos almacenados se perderán. :(",
-  "helpcomment1": "Entre o registrese en el menú de usuario (arriba a la derecha). Una vez entrado, vuelva a ir al menú de usuario, puede cambiar el lenguaje. Siempre que cambie el lenguaje se almacenará en el usuario activo.",
+  "helpcomment1": "Entre o registrese en el menú de usuario (arriba a la derecha). Puede cambiar de idioma.",
   "helpcomment2": "Por defecto, hay un usuario predefinido, nombre de usuario \"user\" y contraseña \"12345\". Eso es todo!",
   "results.details": "Tiene {numbers} números, {fizz} Fizz, {buzz} Buzz y {fizzbuzz} FizzBuzz.",
-  "built": "Hecho usando ReactJS por soma83 para Cuban Engineer FizzBuzz test. Sept. 2021."
+  "built": "Hecho usando ReactJS por soma83 para Cuban Engineer FizzBuzz test. Sept. 2021.",
+  "copy": "Copiar al portapapeles",
+  "copied": "Copiado!",
+  "error.copy": "No se pudo copiar!"
 }
