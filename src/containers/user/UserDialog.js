@@ -12,6 +12,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import {useIntl} from "react-intl";
 import GlobalContext from "../wrappers/GlobalContext";
+import blue from '@material-ui/core/colors/blue';
 import Error from "../../components/error/Error";
 
 const styles = (theme) => ({
@@ -146,7 +147,7 @@ const UserDialog = ({handleClose}) => {
           <Typography gutterBottom onClick={() => {
             setLogin(!login);
             setConfirm('');
-          }} style={{cursor: 'pointer', marginTop: '20px'}}>
+          }} style={{cursor: 'pointer', marginTop: '20px', color: blue[500]}}>
             {intl.formatMessage({id: login ? 'registerq' : 'loginq'})}
           </Typography>
         </DialogContent>
