@@ -23,6 +23,7 @@ function FizzBuzz() {
   const [minimum, setMinimum] = useState(1);
   const [maximum, setMaximum] = useState(100);
   const [error, setError] = useState(null);
+  const [perf, setPerf] = useState(null);
 
   const solut = useRef(null);
 
@@ -35,6 +36,8 @@ function FizzBuzz() {
 
   const calculateFizzBuzz = () => {
     if (global.active) {
+      const begin = performance.now();
+
       const min = +minimum;
       const max = +maximum;
 
@@ -57,7 +60,7 @@ function FizzBuzz() {
       setGlobal(glb);
       setSolution(sol);
       solut.current = sol.join(',');
-
+      setPerf(performance.now() - begin);
     } else {
       setError({msg: intl.formatMessage({id: 'must.be.logged'})});
     }
@@ -134,7 +137,7 @@ function FizzBuzz() {
           {result.map(x => (<tr>{constructOutput(x)}</tr>))}
           </tbody>
         </table>
-        <Typography>{intl.formatMessage({id: 'results.details'}, {numbers, fizz, buzz, fizzbuzz})}</Typography>
+        <Typography>{intl.formatMessage({id: 'results.details'}, {numbers, fizz, buzz, fizzbuzz}) + ` (${perf}ms)`}</Typography>
       </Paper>
     );
   };

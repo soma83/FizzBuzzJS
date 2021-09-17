@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from "@material-ui/core/styles";
 import styles from '../../styles/main-jss';
@@ -11,14 +11,12 @@ import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import InfoIcon from '@material-ui/icons/Info';
 import { Link } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
-import GlobalContext from '../wrappers/GlobalContext';
 import {useIntl} from 'react-intl';
 
 const useStyles = makeStyles(theme => styles(theme));
 
 const MainMenu = () => {
   const classes = useStyles();
-  const {global} = useContext(GlobalContext);
 
   const intl = useIntl();
 
