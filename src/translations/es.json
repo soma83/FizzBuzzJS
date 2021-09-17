@@ -32,7 +32,7 @@
   "help": "Ayuda",
   "loading": "Cargando gráfico",
   "completed.by.users": "FizzBuzz completados por usuarios",
-  "helpcomment": "Los datos son en memoria, es decir, cada vez que abra la aplicación o refresque el navegador los datos almacenados se perderán. :(",
+  "helpcomment": "Los datos son en memoria, es decir, cada vez que abra la aplicación o refresque el navegador los datos almacenados se perderán :(. Una pena, lo sé, pero esta tarea es solo para ReactJS.",
   "helpcomment1": "Entre o registrese en el menú de usuario (arriba a la derecha). Puede cambiar de idioma.",
   "helpcomment2": "Por defecto, hay un usuario predefinido, nombre de usuario \"user\" y contraseña \"12345\". Eso es todo!",
   "results.details": "Tiene {numbers} números, {fizz} Fizz, {buzz} Buzz y {fizzbuzz} FizzBuzz.",

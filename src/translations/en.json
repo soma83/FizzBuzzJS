@@ -32,7 +32,7 @@
   "help": "Help",
   "loading": "Loading Chart",
   "completed.by.users": "FizzBuzz completed by users",
-  "helpcomment": "This one uses data in memory, that is to say, every time you open the app or refresh the browser the stored data will be lost. :(",
+  "helpcomment": "This one uses data in memory, that is to say, every time you open the app or refresh the browser the stored data will be lost :(. A shame, I know, but this task is only meant for ReactJS.",
   "helpcomment1": "Log in or register in the user menu (right upper corner). You can switch languages also.",
   "helpcomment2": "By default there is a predefined user, username \"user\" and password \"12345\". Enjoy!",
   "results.details": "You got {numbers} numbers, {fizz} Fizz, {buzz} Buzz and {fizzbuzz} FizzBuzz.",
