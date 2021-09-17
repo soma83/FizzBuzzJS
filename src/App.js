@@ -1,79 +1,53 @@
-import React, {useRef, useState} from 'react';
-import './App.css';
+import React, {useState} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Application from './containers/application/Application';
+import {IntlProvider} from 'react-intl';
 
-const KEY_MAP = ['e', 'E', '+', '-'];
+import engMsgs from './translations/en.json';
+import espMsgs from './translations/es.json';
+import GlobalContext, {globals} from "./containers/wrappers/GlobalContext";
+import {makeStyles} from "@material-ui/core/styles";
+
+const msgs = {
+  'en': engMsgs,
+  'es': espMsgs
+};
+
+const styles = () => ({
+  styling: {
+    width: '100%',
+    minHeight: '100%',
+    marginTop: 0,
+    zIndex: 1
+  }
+});
+
+const useStyles = makeStyles(() => styles());
 
 function App() {
-  const minimum = useRef(null);
-  const maximum = useRef(null);
+  const classes = useStyles();
+  const [global, setGlobal] = useState(globals);
+  const [locale, setLocale] = useState('en');
 
-  const [solution, setSolution] = useState(null);
-
-  const calculateFizzBuzz = () => {
-    const min = +minimum.current.value;
-    const max = +maximum.current.value;
-
-    const sol = [];
-
-    for (let i = min; i <= max; i += 1) {
-      if (i % 15 === 0) {
-        sol.push('FizzBuzz');
-      } else if (i % 3 === 0) {
-        sol.push('Fizz');
-      } else if (i % 5 === 0) {
-        sol.push('Buzz');
-      } else {
-        sol.push('' + i);
-      }
+  if (global && global.active) {
+    const {lang} = global.users[global.active];
+    if (lang !== locale) {
+      setLocale(lang);
     }
-
-    setSolution(sol.join(', '));
-  };
-
-  const allowOnlyNumbers = e => {
-    if (KEY_MAP.includes(e.key)) {
-      e.preventDefault();
-    }
-  };
-
-  React.useEffect(() => {
-    if (solution) {
-      console.log(solution);
-    }
-  }, [solution]);
+  }
 
   return (
-    <>
-      {!solution ? (<>
-        <label htmlFor="minimum">Minimum range:</label>
-        <input
-          type="number"
-          id="minimun"
-          defaultValue={1}
-          min={0}
-          ref={minimum}
-          onKeyDown={allowOnlyNumbers}
-        />
-        <br />
-        <label htmlFor="maximum">Maximum range:</label>
-        <input
-          type="number"
-          id="maximum"
-          defaultValue={100}
-          ref={maximum}
-          min={10}
-          onKeyDown={allowOnlyNumbers}
-        />
-        <br />
-        <button type="button" onClick={calculateFizzBuzz}>FizzBuzz!</button>
-      </>) : (<>
-        <label>{solution}</label>
-        <br />
-        <button type="button" onClick={() => {
-          setSolution(null);
-        }}>Play again!</button>
-      </>)}
-    </>
+    <IntlProvider locale={locale} messages={msgs[locale]}>
+      <div className={classes.styling}>
+        <GlobalContext.Provider value={{global, setGlobal}}>
+        <Router>
+          <Switch>
+            <Route path="/" component={Application}/>
+          </Switch>
+        </Router>
+        </GlobalContext.Provider>
+      </div>
+    </IntlProvider>
   );
 }
 
