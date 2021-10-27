@@ -17,13 +17,13 @@ const Index = () => {
   const [update, setUpdate] = useState(false);
 
   const calculate = () => {
-    const d = [];
-    d.push([intl.formatMessage({id: 'users'}), intl.formatMessage({id: 'completed'})]);
+    const calculatedData = [];
+    calculatedData.push([intl.formatMessage({id: 'users'}), intl.formatMessage({id: 'completed'})]);
     Object.keys(global.users).forEach(x => {
       const val = global.users[x].completed;
-      d.push([x, val]);
+      calculatedData.push([x, val]);
     });
-    setData(d);
+    setData(calculatedData);
   };
 
   useEffect(() => {
